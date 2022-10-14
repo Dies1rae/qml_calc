@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQuickWindow>
 #include <iostream>
+#include <string>
 
 #include "calculator.h"
 
@@ -34,7 +35,8 @@ int main(int argc, char *argv[])
                        &calcEnj, SLOT(clearSlt()));
 
     QObject::connect(&calcEnj, &calculator::valueChngd, [&] () {
-        mainDisp->setProperty("text", {QString::fromStdString(std::to_string((int)calcEnj.getRes()))});
+        std::string tmp = std::to_string(calcEnj.getRes());
+        mainDisp->setProperty("text", {QString::fromStdString(tmp)});
     });
 
 

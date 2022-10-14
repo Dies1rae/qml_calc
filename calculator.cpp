@@ -6,7 +6,7 @@ namespace clc {
     {}
 
     bool calculator::isNumeric(std::string const &str) {
-        return std::regex_match(str, std::regex("^(([0-9]*)|(([1-9]*)\\.([0-9]*)))"));
+        return std::regex_match(str, std::regex("^(([0-9]*)|(([0-9]*)\\.([0-9]*)))"));
     }
 
     bool calculator::parseOp(void) {

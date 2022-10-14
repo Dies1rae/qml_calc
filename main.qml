@@ -3,10 +3,21 @@ import QtQuick.Controls 2.15
 import QtQuick.Window 2.15
 
 Window {
+    function gui(wght, hght) {
+        var Height = Math.max(600.0, hght)
+        var Width = Math.max(600.0, wght)
+        var coef = (Math.max(Height, Width) / 640);
+        if(coef != 1.0) {
+            coef = (coef * 0.2) + 0.5
+        }
+        return coef;
+    }
+
     id: main
     objectName: "main"
     width: Screen.width
     height: Screen.height
+    readonly property double guiCoef: gui(width, height)
     visible: true
     title: qsTr("Calculator")
     color: "black"
@@ -14,6 +25,7 @@ Window {
         id: textedit
         width: main.width
         height: 50
+        x: 2
         border.color: "black"
         border.width: 5
         color: "gray"
@@ -30,7 +42,7 @@ Window {
                 id: maintxt
                 text: ""
                 focus: true
-                validator : RegularExpressionValidator { regularExpression : /^(([0-9]*)|(([1-9]*)\\.([0-9]*)))/ }
+                validator : RegularExpressionValidator { regularExpression : /^(([0-9]*)|(([0-9]*)\\.([0-9]*)))/ }
             }
         }
     }
@@ -45,10 +57,10 @@ Window {
         border.width: 5
         RoundButton {
             id: seven
-            width: 50
-            height: 50
-            x: 10
-            y: 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: 10 * guiCoef
+            y: 10 * guiCoef
             text: "7"
             font.pointSize: 20
             palette.buttonText: "black"
@@ -58,10 +70,10 @@ Window {
         RoundButton {
             id: four
             text: "4"
-            width: 50
-            height: 50
-            x: 10
-            y: 55 + 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: 10 * guiCoef
+            y: (55 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "gray"
@@ -70,10 +82,10 @@ Window {
         RoundButton {
             id: one
             text: "1"
-            width: 50
-            height: 50
-            x: 10
-            y: 110 + 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: 10 * guiCoef
+            y: (110 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "gray"
@@ -82,10 +94,10 @@ Window {
         RoundButton {
             id: zero
             text: "0"
-            width: 50
-            height: 50
-            x: 10
-            y: 165 + 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: 10 * guiCoef
+            y: (165 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "gray"
@@ -94,10 +106,10 @@ Window {
         RoundButton {
             id: eight
             text: "8"
-            width: 50
-            height: 50
-            x: 60 + 10
-            y: 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: (60 + 10) * guiCoef
+            y: 10 * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "gray"
@@ -106,10 +118,10 @@ Window {
         RoundButton {
             id: five
             text: "5"
-            width: 50
-            height: 50
-            x: 60 + 10
-            y: 55 + 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: (60 + 10) * guiCoef
+            y: (55 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "gray"
@@ -118,10 +130,10 @@ Window {
         RoundButton {
             id: two
             text: "2"
-            width: 50
-            height: 50
-            x: 60 + 10
-            y: 110 + 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: (60 + 10) * guiCoef
+            y: (110 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "gray"
@@ -130,10 +142,10 @@ Window {
         RoundButton {
             id: nine
             text: "9"
-            width: 50
-            height: 50
-            x: 120 + 10
-            y: 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: (120 + 10) * guiCoef
+            y: 10 * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "gray"
@@ -142,10 +154,10 @@ Window {
         RoundButton {
             id: six
             text: "6"
-            width: 50
-            height: 50
-            x: 120 + 10
-            y: 55 + 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: (120 + 10) * guiCoef
+            y: (55 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "gray"
@@ -154,10 +166,10 @@ Window {
         RoundButton {
             id: three
             text: "3"
-            width: 50
-            height: 50
-            x: 120 + 10
-            y: 110 + 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: (120 + 10) * guiCoef
+            y: (110 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "gray"
@@ -166,10 +178,10 @@ Window {
         RoundButton {
             id: proc
             text: "%"
-            width: 50
-            height: 50
-            x: 120 + 10
-            y: 165 + 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: (120 + 10) * guiCoef
+            y: (165 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "green"
@@ -178,10 +190,10 @@ Window {
         RoundButton {
             id: dot
             text: "."
-            width: 50
-            height: 50
-            x: 60 + 10
-            y: 165 + 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: (60 + 10) * guiCoef
+            y: (165 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "green"
@@ -190,10 +202,10 @@ Window {
         RoundButton {
             id: dev
             text: "/"
-            width: 50
-            height: 50
-            x: 175 + 10
-            y: 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: (175 + 10) * guiCoef
+            y: 10 * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "green"
@@ -202,10 +214,10 @@ Window {
         RoundButton {
             id: mult
             text: "*"
-            width: 50
-            height: 50
-            x: 175 + 10
-            y: 55 + 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: (175 + 10) * guiCoef
+            y: (55 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "green"
@@ -214,10 +226,10 @@ Window {
         RoundButton {
             id: minus
             text: "-"
-            width: 50
-            height: 50
-            x: 175 + 10
-            y: 110 + 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: (175 + 10) * guiCoef
+            y: (110 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "green"
@@ -226,10 +238,10 @@ Window {
         RoundButton {
             id: plus
             text: "+"
-            width: 50
-            height: 50
-            x: 175 + 10
-            y: 165 + 10
+            width: 50 * guiCoef
+            height: 50 * guiCoef
+            x: (175 + 10) * guiCoef
+            y: (165 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "green"
@@ -240,10 +252,10 @@ Window {
             objectName: "clear"
             signal totalCleared()
             text: "C"
-            width: 100
-            height: 110
-            x: 225 + 10
-            y: 10
+            width: 100 * guiCoef
+            height: 110 * guiCoef
+            x: (225 + 10) * guiCoef
+            y: 10 * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "red"
@@ -257,10 +269,10 @@ Window {
             objectName: "total"
             signal totalClicked(string msg)
             text: "="
-            width: 100
-            height: 110
-            x: 225 + 10
-            y: 110 + 10
+            width: 100 * guiCoef
+            height: 110 * guiCoef
+            x: (225 + 10) * guiCoef
+            y: (110 + 10) * guiCoef
             font.pointSize: 20
             palette.buttonText: "black"
             palette.button: "yellow"
